@@ -2,7 +2,7 @@ import Container from "@mui/material/Container";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "./App.css";
-import Definations from "./components/Definations/Definations";
+import Definitions from "./components/Definitions/Definitions";
 import Header from "./components/Header";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
       );
       setMeanings(data.data);
     } catch (error) {
-      console.log(error);
+      console.log("Please select your currency & Search a Word");
     }
   };
   console.log(meanings);
@@ -29,7 +29,14 @@ function App() {
   return (
     <div
       className="App"
-      style={{ height: "100vh", backgroundColor: "#282c34", color: "white" }}
+      style={{
+        height: "100vh",
+        backgroundImage: `url("https://www.rd.com/wp-content/uploads/2017/10/This-Is-How-Long-It-Takes-To-Read-The-Whole-Dictionary_509582812-Billion-Photos_FT.jpg?resize=768,480")`,
+        backgroundColor: "#282c34",
+        color: "white",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
     >
       <Container
         maxWidth="md"
@@ -43,7 +50,9 @@ function App() {
           label={label}
           setLabel={setLabel}
         />
-        <Definations word={word} meanings={meanings} category={category} />
+        {meanings && (
+          <Definitions word={word} meanings={meanings} label={label} />
+        )}
       </Container>
     </div>
   );
