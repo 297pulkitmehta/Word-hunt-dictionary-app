@@ -8,14 +8,17 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import categories from "../Data/Category";
 
-function Header() {
-  const [word, setWord] = React.useState("");
-  const [category, setCategory] = React.useState("");
+function Header({ category, setCategory, word, setWord, label, setLabel }) {
   const handleChange = (event) => {
     setWord(event.target.value);
   };
   const handleCategoryChange = (event) => {
     setCategory(event.target.value);
+    const newLabel = categories.find(
+      (category) => category.value === event.target.value
+    );
+    setLabel(newLabel.label);
+    setWord("");
   };
 
   const darkTheme = createTheme({
